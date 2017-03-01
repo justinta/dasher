@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  reverseproxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8090:8090"
+    volumes:
+      - ./volumes/influx:/var/lib/influxdb
+      - ./conf/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+    environment:
+      - VIRTUAL_HOST=influx_host.domain
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./volumes/grafana:/var/lib/grafana
+      - ./conf/grafana.ini:/etc/grafana/grafana.ini
+    links:
+      - influxdb
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+      - VIRTUAL_HOST=grafana_host.domain
+      - VIRTUAL_PORT=3000
