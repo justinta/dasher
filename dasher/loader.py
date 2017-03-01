@@ -1,6 +1,5 @@
 import imp
 import os
-import sys
 
 PLUGINFOLDER = os.path.join(os.path.dirname(__file__), 'modules/')
 INIT = '__init__'
