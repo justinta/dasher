@@ -8,17 +8,14 @@ import requests
 
 from dashboard.helper import common
 
-PROJECT_MAP = {'SPX develop': 'SPX',
-               'IMX': 'IMX',
-               'jarvis develop': 'Jarvis',
-               'sundance-api develop': 'Sundance'}
+PROJECT_MAP = {}
 
 
 def sonar(api_call, payload={}):
     '''
     Return results from api query
     '''
-    req = requests.get('http://10.30.20.123:9000/api/{0}'.format(api_call), params=payload, auth=('admin', 'admin'))
+    req = requests.get('http://sonarqube.example.com:9000/api/{0}'.format(api_call), params=payload, auth=('admin', 'admin'))
     return req.json()
 
 

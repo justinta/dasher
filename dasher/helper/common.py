@@ -8,13 +8,7 @@ import ConfigParser
 from datetime import datetime
 
 
-PROJECTS = {'SPX': 'SPX',
-            'IMX': 'IMX',
-            'Galaxy': 'Galaxy',
-            'Jarvis': 'Jarvis',
-            'Cloud_Services': 'Sundance',
-            'Cloud_to_Cloud': 'Bluffdale',
-            'ShadowControl': 'ShadowControl'}
+PROJECTS = { }
 
 
 def _correct_year(date):
